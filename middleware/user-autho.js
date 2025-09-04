@@ -5,7 +5,7 @@ const UserAutho =  (req, res, next) => {
     const authorizationUser = req.headers["authorization"];
     if (!authorizationUser) {
       return res
-        .status(403)
+        .status(400)
         .json({ message: "Unauthorized please login first" });
     }
 
@@ -13,12 +13,14 @@ const UserAutho =  (req, res, next) => {
 
     if (!token) {
       return res
-        .status(403)
+        .status(400)
         .json({ message: "Unauthorized please login first" });
     }
 
    try{
      const decodeToken =  jwt.verify(token, process.env.JWT_SECRET_KEY);
+     console.log(decodeToken);
+     
     req.userInfo = decodeToken;
     next()
    }

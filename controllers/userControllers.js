@@ -66,7 +66,7 @@ const userLogin = async(req,res) => {
             username: checkEmail.username,
             role: checkEmail.role
         },process.env.JWT_PRIVATE_KEY,{
-            expiresIn: '9m'
+            expiresIn: '15m'
         })
 
         res.status(200).json({
